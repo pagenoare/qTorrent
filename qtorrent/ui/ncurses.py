@@ -1,9 +1,7 @@
 import urwid
 
-from qtorrent.handlers.search.torrentz import (
-    fetch_torrent_list,
-)
-from qtorrent.handlers.app.transmission import start_torrent
+from qtorrent.handlers.search import fetch_torrent_list
+from qtorrent.handlers.app import start_torrent
 
 
 def generate_torrent_list(choices):
