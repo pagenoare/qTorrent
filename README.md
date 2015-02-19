@@ -1,6 +1,6 @@
 # qTorrent
 
-qTorrent is a simple app, which allows you to add torrents to your torrent app, whithout using browser.
+qTorrent is a simple app, which allows you to add torrents to your torrent app, without using browser.
 
 ## Currently supported sites
 
