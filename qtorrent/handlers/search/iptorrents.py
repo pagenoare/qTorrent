@@ -1,14 +1,15 @@
 import requests
 from lxml.html import fromstring
 
+from qtorrent.config import config
 
 cookies = {
-    'uid': '',
-    'pass': ''
+    'uid': config.get('iptorrents', 'uid'),
+    'pass': config.get('iptorrents', 'pass')
 }
 
-BASE_URL = 'https://www.iptorrents.com/'
-SEARCH_URL = '{}t?720p=on&q={}&qf=&o=seeders'
+BASE_URL = config.get('iptorrents', 'site_url')
+SEARCH_URL = config.get('iptorrents', 'search_url')
 
 
 def parse_torrent(torrent):
@@ -23,7 +24,7 @@ def parse_torrent(torrent):
 
 def fetch_torrent_list(search_text):
     content = requests.get(
-        SEARCH_URL.format(BASE_URL, search_text), cookies=cookies
+        SEARCH_URL.format(url=BASE_URL, query=search_text), cookies=cookies
     ).content
 
     parser = fromstring(content)

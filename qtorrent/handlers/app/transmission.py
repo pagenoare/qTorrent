@@ -1,6 +1,16 @@
 import transmissionrpc
 
+from qtorrent.config import config
 
-def start_torrent(torrent_file):
-    tc = transmissionrpc.Client('localhost', port=9091)
-    tc.add_torrent('file://{}'.format(torrent_file))
+
+def start_torrent(torrent):
+    tc = transmissionrpc.Client(
+        config.get('transmission', 'host'),
+        port=config.get('transmission', 'port')
+    )
+    if config.get('base', 'search') == 'iptorrents':
+        tc.add_torrent('file://{}'.format(torrent))
+
+    if config.get('base', 'search') == 'torrentz':
+        tc.add_torrent('magnet:?xt=urn:btih:{}'.format(torrent))
+

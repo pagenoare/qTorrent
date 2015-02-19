@@ -1,8 +1,7 @@
 import urwid
 
-from qtorrent.handlers.search.iptorrents import (
+from qtorrent.handlers.search.torrentz import (
     fetch_torrent_list,
-    download_torrent_file
 )
 from qtorrent.handlers.app.transmission import start_torrent
 
@@ -22,7 +21,7 @@ def generate_torrent_list(choices):
 
 def item_chosen(button, choice):
     response = urwid.Text([u'Adding torrent to transmission: ', choice, u'\n'])
-    start_torrent(download_torrent_file(choice))
+    start_torrent(choice)
     top.set_footer(response)
 
 
